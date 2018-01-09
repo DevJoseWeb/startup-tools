@@ -1,14 +1,27 @@
 const path = require('path');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars');
+const sgTransport = require('nodemailer-sendgrid-transport');
 
-const { host, port, user, pass } = require('../config/mail');
+const { transporter, host, port, user, pass } = require('../config/mail');
 
-const transport = nodemailer.createTransport({
-  host,
-  port,
-  auth: { user, pass },
-});
+let transporterConfig = {};
+if (transporter === 'smtp') {
+  transporterConfig = {
+    host,
+    port,
+    auth: { user, pass },
+  };
+} else {
+  transporterConfig = sgTransport({
+    auth: {
+      api_user: user,
+      api_key: pass,
+    },
+  });
+}
+
+const transport = nodemailer.createTransport(transporterConfig);
 
 transport.use('compile', hbs({
   viewEngine: 'handlebars',
