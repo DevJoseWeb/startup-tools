@@ -14,7 +14,8 @@ module.exports = {
       },
       userId: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
+        foreignKey: true,
         references: { model: 'users', key: 'id' },
       },
       board: {
