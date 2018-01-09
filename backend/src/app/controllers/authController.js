@@ -84,7 +84,7 @@ router.post('/forgot_password', async (req, res) => {
       to: email,
       from: 'oi@rocketseat.com.br',
       template: 'auth/forgot_password',
-      subject: 'Startup Tools | Recuperação de senha'
+      subject: 'Startup Tools | Recuperação de senha',
       context: {
         name: user.name,
         url: `${authConfig.resetPasswordUrl}/${token}`,
