@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   "username": process.env.DATABASE_USER || "root",
   "password": process.env.DATABASE_PASS || null,
