@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: hidden;
+}
+
+html, body, #root, .container {
+  height: 100%;
+}
+
+body {
+  background: #7159C1;
+  color: #fff;
+  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+input, button, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: 0;
+}
+
+input {
+  font-size: 14px;
+}
+
+button {
+  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.container {
+  display: flex;
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 21px; }
+h3 { font-size: 18px; }
+h4 { font-size: 16px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }
