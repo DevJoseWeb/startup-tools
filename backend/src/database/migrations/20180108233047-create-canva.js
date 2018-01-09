@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
         foreignKey: true,
-        references: { model: 'users', key: 'id' },
+        references: { model: 'Users', key: 'id' },
       },
       board: {
         type: Sequelize.TEXT,
