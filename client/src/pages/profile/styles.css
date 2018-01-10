@@ -1,0 +1,14 @@
+.profile-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-container {
+  flex: 1;
+  max-width: 350px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

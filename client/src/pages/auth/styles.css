@@ -1,0 +1,22 @@
+.login-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7159C1;
+}
+
+.login-container {
+  flex: 1;
+  max-width: 350px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container > h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+

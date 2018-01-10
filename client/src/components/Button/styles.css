@@ -1,0 +1,48 @@
+.button {
+  background: #A0E03A;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 20px;
+  border-radius: 5px;
+  color: #FFF;
+  font-weight: 600;
+  font-size: 18px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.button-type-block {
+  width: 100%;
+}
+
+.button.button-size-small {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 15px;
+}
+
+.button.button-size-small i {
+  font-size: 14px;
+}
+
+.button.button-color-danger {
+  background: #CF5959;
+}
+
+.button.button-color-danger:hover {
+  background: #A94242;
+}
+
+.button.button-color-info {
+  background: #557cf2;
+}
+
+.button.button-color-info:hover {
+  background: #4566C9;
+}
+
+.button:hover {
+  background: #8FC834;
+}

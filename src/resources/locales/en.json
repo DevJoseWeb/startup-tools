@@ -1,0 +1,27 @@
+{
+  "User already exists": "User already exists",
+  "Registration failed": "Registration failed",
+  "User not found": "User not found",
+  "Invalid password": "Invalid password",
+  "Authentication failed": "Authentication failed",
+  "Cannot send forgot password email": "Cannot send forgot password email",
+  "Error on forgot password, try again": "Error on forgot password, try again",
+  "Password confirmation mismatch": "Password confirmation mismatch",
+  "Token expired, generate a new one": "Token expired, generate a new one",
+  "Cannot reset password, try again": "Cannot reset password, try again",
+
+  "User mismatch": "User mismatch",
+  "Canvas list failed.": "Canvas list failed.",
+  "User doesn't exists": "User doesn't exists",
+  "Canvas creation failed.": "Canvas creation failed.",
+  "Canvas not found": "Canvas not found",
+  "Canvas update failed": "Canvas update failed",
+  "Canvas delete failed": "Canvas delete failed",
+
+  "No token provided": "No token provided",
+  "Token not present": "Token not present",
+  "Token invalid": "Token invalid",
+  "Token malformatted": "Token malformatted",
+
+  "Profile update failed": "Profile update failed"
+}

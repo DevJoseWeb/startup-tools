@@ -1,0 +1,27 @@
+{
+  "User already exists": "Usuário já existe com esse e-mail",
+  "Registration failed": "Erro no cadastro, tente novamente",
+  "User not found": "Usuário não encontrado",
+  "Invalid password": "Senha incorreta",
+  "Authentication failed": "Falha na autenticação, tente novamente",
+  "Cannot send forgot password email": "Não foi possível enviar o e-mail de recuperação de senha",
+  "Error on forgot password, try again": "Erro para recuperar a senha, tente novamente",
+  "Password confirmation mismatch": "Senha de confirmação inválida",
+  "Token expired, generate a new one": "Token expirado, realize nova recuperação de senha",
+  "Cannot reset password, try again": "Não foi possível resetar sua senha, tente novamente",
+
+  "User mismatch": "Usuário da requisição inválido",
+  "Canvas list failed": "Falha na listagem dos canvas",
+  "User doesn't exists": "Usuário não existe",
+  "Canvas creation failed": "Falha na criação do canvas",
+  "Canvas not found": "Canvas não encontrado",
+  "Canvas update failed": "Falha na atualização do canvas",
+  "Canvas delete failed": "Falha na remoção do canvas",
+
+  "No token provided": "Token de autenticação não está presente na requisição",
+  "Token not present": "Token de autenticação não está presente na requisição",
+  "Token invalid": "Token de autenticação inválido",
+  "Token malformatted": "Token de autenticação mal formatado",
+
+  "Profile update failed": "Falha ao alterar perfil, tente novamente"
+}
