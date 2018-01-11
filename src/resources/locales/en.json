@@ -17,6 +17,9 @@
   "Canvas not found": "Canvas not found",
   "Canvas update failed": "Canvas update failed",
   "Canvas delete failed": "Canvas delete failed",
+  "Canvas share failed": "Canvas share failed",
+  "Canvas is not public": "Canvas is not public",
+  "Canvas show failed": "Canvas show failed",
 
   "No token provided": "No token provided",
   "Token not present": "Token not present",

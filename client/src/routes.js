@@ -14,6 +14,7 @@ import ForgotPassword from 'pages/auth/forgotpassword';
 import ResetPassword from 'pages/auth/resetpassword';
 import Profile from 'pages/profile';
 import Canvas from 'pages/canvas';
+import Shared from 'pages/shared';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -50,6 +51,7 @@ const Routes = () => (
       <GuestRoute path="/login" component={Login} />
       <GuestRoute path="/forgot-password" component={ForgotPassword} />
       <GuestRoute path="/reset-password/:token" component={ResetPassword} />
+      <Route path="/shared/:id" component={Shared} />
     </div>
   </Router>
 );

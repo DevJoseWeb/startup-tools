@@ -2,7 +2,7 @@
 import React, { Component, Fragment } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { toast } from 'react-toastify';
-import { isEqual } from 'lodash';
+import { isEqualWith, isEqual } from 'lodash';
 import { Link } from 'react-router-dom';
 
 import api from 'services/api';
@@ -33,12 +33,14 @@ export default class Canvas extends Component {
   }
 
   async componentDidMount() {
+    this.loadCanvasList();
+  }
+
+  loadCanvasList = async () => {
     this.setState({ loadingCanvasList: true });
 
-    const user = JSON.parse(localStorage.getItem('@JumpstartTools:user'));
-
     try {
-      const response = await api.get(`canvas/from/${user.id}`);
+      const response = await api.get('canvas');
 
       this.setState({ canvasList: response.data.canvas });
     } catch (err) {
@@ -55,7 +57,9 @@ export default class Canvas extends Component {
 
     const canvas = canvasList.find(findCanvas => findCanvas.id === selectedCanvas.id);
 
-    return !isEqual(canvas, selectedCanvas);
+    return !isEqualWith(canvas, selectedCanvas, (first, second) => {
+      return isEqual(first.board, second.board) && first.title === second.title;
+    });
   }
 
   logout = async () => {
@@ -110,19 +114,13 @@ export default class Canvas extends Component {
     try {
       await api.put(`canvas/${selectedCanvas.id}`, selectedCanvas);
 
-      let canvasList = [ ...this.state.canvasList ];
-
-      canvasList = canvasList.map(canvas =>
-        canvas.id === selectedCanvas.id ? selectedCanvas : canvas
-      );
-
-      this.setState({ canvasList });
+      this.loadCanvasList();
 
       toast.success('Canvas salvo com sucesso!');
     } catch (err) {
     }
 
-    this.setState({ saveCanvasLoading: false, saveModalVisible: false });
+    this.setState({ saveCanvasLoading: false });
   }
 
   deleteCanvas = async () => {
@@ -136,13 +134,9 @@ export default class Canvas extends Component {
     try {
       await api.delete(`canvas/${selectedCanvas.id}`);
 
-      let canvasList = [ ...this.state.canvasList ];
+      this.loadCanvasList();
 
-      canvasList = canvasList.filter(canvas =>
-        canvas.id !== selectedCanvas.id
-      );
-
-      this.setState({ canvasList, selectedCanvas: null });
+      this.setState({ selectedCanvas: null });
 
       toast.success('Canvas deletado com sucesso!');
     } catch (err) {
@@ -151,8 +145,59 @@ export default class Canvas extends Component {
     this.setState({ deleteCanvasLoading: false });
   }
 
-  shareCanvas = () => {
+  shareCanvas = async () => {
+    if (this.checkUnsavedChanges()
+      && window.confirm('Você possui algumas alterações no seu canvas que não foram salvas, deseja salvar agora?')) {
+      await this.saveCanvas();
+    }
 
+    const { selectedCanvas } = this.state;
+
+    this.setState({ shareCanvasLoading: true });
+
+    try {
+      const response = await api.put(`canvas/share/${selectedCanvas.id}`);
+
+      this.loadCanvasList();
+      this.setState({ selectedCanvas: response.data.canva });
+
+      toast.success('Canvas compartilhado com sucesso, clique no botão ao lado para copiar o link!');
+    } catch (err) {
+    }
+
+    this.setState({ shareCanvasLoading: false });
+  }
+
+  unshareCanvas = async () => {
+    if (this.checkUnsavedChanges()
+      && window.confirm('Você possui algumas alterações no seu canvas que não foram salvas, deseja salvar agora?')) {
+      await this.saveCanvas();
+    }
+
+    const { selectedCanvas } = this.state;
+
+    this.setState({ shareCanvasLoading: true });
+
+    try {
+      const response = await api.put(`canvas/unshare/${selectedCanvas.id}`);
+
+      this.loadCanvasList();
+      this.setState({ selectedCanvas: response.data.canva });
+
+      toast.success('Canvas removido do compartilhamento com sucesso!');
+    } catch (err) {
+    }
+
+    this.setState({ shareCanvasLoading: false });
+  }
+
+  copyToClipboard = () => {
+    var textField = document.createElement('textarea');
+    textField.innerText = `${window.location.protocol}//${window.location.host}/shared/${this.state.selectedCanvas.id}`;
+    document.body.appendChild(textField);
+    textField.select();
+    document.execCommand('copy');
+    textField.remove();
   }
 
   renderCanvas = () => {
@@ -173,14 +218,21 @@ export default class Canvas extends Component {
           </div>
 
           <div className="buttons">
+            { canvas.isPublic && (
+              <Button size="small" color="info" onClick={this.copyToClipboard}>
+                <i className="fa fa-clipboard" />
+              </Button>
+            )}
             <Button
               className="button-share"
               size="small"
-              color="info"
-              onClick={this.shareCanvas}
+              color={canvas.isPublic ? 'danger' : 'info'}
+              onClick={canvas.isPublic ? this.unshareCanvas : this.shareCanvas}
               loading={this.state.shareCanvasLoading}
             >
-              <i class="fa fa-share" />&nbsp; Compartilhar
+              { canvas.isPublic
+                ? <Fragment><i className="fa fa-times" />&nbsp;  Parar de compartilhar</Fragment>
+                : <Fragment><i className="fa fa-share" />&nbsp;  Compartilhar</Fragment> }
             </Button>
             <Button
               style={{ width: 150 }}

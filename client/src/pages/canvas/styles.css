@@ -133,7 +133,7 @@
   align-items: center;
 }
 
-.board header input {
+.board header .board-title > input {
   font-size: 24px;
   color: #333;
   font-weight: 700;
@@ -141,11 +141,11 @@
   padding: 3px 0;
 }
 
-.board header input:hover {
+.board header .board-title > input:hover {
   border-color: #aaa;
 }
 
-.board header div.board-title i {
+.board header .board-title div.board-title i {
   color: #999;
   font-size: 16px;
   margin-left: 10px;

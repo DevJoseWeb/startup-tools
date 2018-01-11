@@ -17,6 +17,9 @@
   "Canvas not found": "Canvas não encontrado",
   "Canvas update failed": "Falha na atualização do canvas",
   "Canvas delete failed": "Falha na remoção do canvas",
+  "Canvas share failed": "Falha no compartilhamento do canvas",
+  "Canvas is not public": "O canvas não é público",
+  "Canvas show failed": "Não foi possível visualizar o canvas",
 
   "No token provided": "Token de autenticação não está presente na requisição",
   "Token not present": "Token de autenticação não está presente na requisição",

@@ -3,15 +3,12 @@ const bcrypt = require('bcryptjs');
 const { Canva, User } = require('../models');
 
 module.exports = {
-  listFromUser: async (req, res) => {
-    const { id } = req.params;
-
-    if (req.userId != id)
-      return res.status(401).send({ error: res.__('User mismatch') });
+  list: async (req, res) => {
+    const { userId } = req;
 
     try {
       const canvas = await Canva.findAll({
-        where: { userId: id },
+        where: { userId },
         order: [
           ['updatedAt', 'DESC'],
         ],
@@ -20,6 +17,24 @@ module.exports = {
       return res.send({ canvas });
     } catch (err) {
       return res.status(400).send({ error: res.__('Canvas list failed') });
+    }
+  },
+
+  show: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const canva = await Canva.findById(id);
+
+      if (!canva)
+        return res.status(400).send({ error: res.__('Canvas not found') });
+
+      if (canva.isPublic !== true)
+        return res.status(401).send({ error: res.__('Canvas is not public') });
+
+      return res.send({ canva });
+    } catch (err) {
+      return res.status(400).send({ error: res.__('Canvas show failed') });
     }
   },
 
@@ -74,16 +89,60 @@ module.exports = {
       const canva = await Canva.findById(id);
 
       if (!canva)
-        return res.status(401).send({ error: res.__('Canvas not found') });
+        return res.status(400).send({ error: res.__('Canvas not found') });
 
       if (canva.userId != userId)
         return res.status(401).send({ error: res.__('User mismatch') });
 
-      canva.destroy();
+      await canva.destroy();
 
       return res.send();
     } catch (err) {
       return res.status(400).send({ error: res.__('Canvas delete failed') });
     }
-  }
+  },
+
+  share: async (req, res) => {
+    const { userId, params: { id } } = req;
+
+    try {
+      const canva = await Canva.findById(id);
+
+      if (!canva)
+        return res.status(400).send({ error: res.__('Canvas not found') });
+
+      if (canva.userId != userId)
+        return res.status(401).send({ error: res.__('User mismatch') });
+
+      canva.isPublic = true;
+
+      await canva.save();
+
+      return res.send({ canva });
+    } catch (err) {
+      return res.status(400).send({ error: res.__('Canvas share failed') });
+    }
+  },
+
+  unshare: async (req, res) => {
+    const { userId, params: { id } } = req;
+
+    try {
+      const canva = await Canva.findById(id);
+
+      if (!canva)
+        return res.status(400).send({ error: res.__('Canvas not found') });
+
+      if (canva.userId != userId)
+        return res.status(401).send({ error: res.__('User mismatch') });
+
+      canva.isPublic = false;
+
+      await canva.save();
+
+      return res.send({ canva });
+    } catch (err) {
+      return res.status(400).send({ error: res.__('Canvas share failed') });
+    }
+  },
 };
