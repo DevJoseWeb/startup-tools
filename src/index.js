@@ -13,7 +13,7 @@ i18n.configure(i18nConfig);
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Middlewares
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ app.use(i18n.init);
 app.use('/api', require('./app/routes'));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 app.listen(process.env.PORT || 3001);
