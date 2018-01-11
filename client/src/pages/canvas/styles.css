@@ -51,9 +51,9 @@
   margin-top: 10px;
   cursor: pointer;
   transition: all 0.2s;
-  border-left: 5px solid #EBE5FF;
-  background: #fff;
-  color: #666;
+  background: #5E4BA8;
+  border-left: 5px solid #5E4BA8;
+  color: #fff;
 }
 
 .sidebar ul.canvas-list li::after {
@@ -67,19 +67,19 @@
 }
 
 .sidebar ul.canvas-list li p {
-  color: #999;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   margin-top: 3px;
 }
 
 .sidebar ul.canvas-list li.active {
-  background: #5E4BA8;
-  border-color: #5E4BA8;
-  color: #fff;
+  border-color: #EBE5FF;
+  background: #fff;
+  color: #666;
 }
 
 .sidebar ul.canvas-list li.active p {
-  color: rgba(255, 255, 255, 0.6);
+  color: #999;
 }
 
 .sidebar ul.canvas-list li:hover:not(.active) {
