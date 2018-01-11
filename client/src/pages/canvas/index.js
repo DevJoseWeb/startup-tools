@@ -161,7 +161,7 @@ export default class Canvas extends Component {
       this.loadCanvasList();
       this.setState({ selectedCanvas: response.data.canva });
 
-      toast.success('Canvas compartilhado com sucesso, clique no botão ao lado para copiar o link!');
+      toast.success('Canvas compartilhado, clique no botão ao lado para copiar o link!');
     } catch (err) {
     }
 
@@ -198,6 +198,8 @@ export default class Canvas extends Component {
     textField.select();
     document.execCommand('copy');
     textField.remove();
+
+    toast.success('Link copiado, já pode usar o CTRL-V!')
   }
 
   renderCanvas = () => {
