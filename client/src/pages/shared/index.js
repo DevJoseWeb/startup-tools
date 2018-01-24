@@ -13,7 +13,7 @@ export default class Shared extends Component {
     const { id } = this.props.match.params;
 
     try {
-      const response = await api.get(`canvas/${id}`);
+      const response = await api.get(`shared/${id}`);
 
       this.setState({ selectedCanvas: response.data.canva });
     } catch (err) {

@@ -23,6 +23,9 @@ router.put('/canvas/share/:id', canvaController.share);
 router.put('/canvas/unshare/:id', canvaController.unshare);
 router.delete('/canvas/:id', canvaController.delete);
 
+// Shared canvas
+router.get('/shared/:id', canvaController.show);
+
 router.use('/users', authMiddleware);
 
 router.put('/users', userController.update);
