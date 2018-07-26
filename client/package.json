@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "apisauce": "^0.14.3",
-    "axios": "^0.17.1",
+    "apisauce": "^0.15.2",
+    "axios": "^0.18.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
@@ -12,8 +12,8 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
-    "react-toastify": "^3.2.1"
+    "react-scripts": "1.1.4",
+    "react-toastify": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
